@@ -6,6 +6,9 @@ import { useState } from "react";
 import { authClient } from "@/lib/auth-client"; 
 
 export default function Home() {
+  const  {data : session} = authClient.useSession()
+
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,6 +39,16 @@ export default function Home() {
            window.alert("Success")
         }
       })
+  }
+  if(session){
+     return(
+       <div className="flex flex-col p-4 gap-y-4">
+          <p>Logged in as {session.user.name}</p>
+          <Button onClick={()=> authClient.signOut()}>
+             Sign out
+          </Button>
+       </div>
+     );
   }
   return (
     <div className="p-4 flex flex-col gap-y-4">
