@@ -2,7 +2,9 @@
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod"
 import { OctagonAlertIcon } from "lucide-react";
-
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import {FaGoogle,FaGithub} from "react-icons/fa"
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { authClient } from "@/lib/auth-client";
@@ -16,9 +18,8 @@ import {Form,
        FormMessage,
 }  from "@/components/ui/form"
 import { useForm } from "react-hook-form";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+
 
 
 const formSchema = z.object({
@@ -52,12 +53,12 @@ const SignUpView = () => {
          name:data.name,
          email:data.email,
          password:data.password,
-         
+         callbackURL: "/",
        },
        {
           onSuccess: () => {
-             setPending(true);
-             router.push("/");
+            setPending(false);
+            router.push("/");
           },
           onError: ({error})=>{
              setPending(false);
@@ -180,15 +181,24 @@ const SignUpView = () => {
                             variant="outline"
                             type="button"
                             className="w-full cursor-pointer"
+                            onClick={()=>{authClient.signIn.social({
+                               provider:"google",
+                               callbackURL: "/",
+                            })}}
+                           
                           >
-                             Google
+                            <FaGoogle/>
                           </Button>
-                          <Button
+                           <Button
                             variant="outline"
                             type="button"
                             className="w-full cursor-pointer"
+                            onClick={()=>{authClient.signIn.social({
+                               provider:"github",
+                               callbackURL: "/",
+                            })}}
                           >
-                             Github
+                            <FaGithub/>
                           </Button>
                       </div>
                       <div className="text-center  text-sm">
