@@ -21,6 +21,7 @@ const HomeView = ()=>{
           <Button onClick={()=> authClient.signOut({
              fetchOptions:{
                  onSuccess: ()=>router.push("/signin")
+                 
              }
           })}>
              Sign out
