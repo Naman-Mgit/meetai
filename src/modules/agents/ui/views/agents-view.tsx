@@ -5,7 +5,6 @@ import { useTRPC } from '@/trpc/client'
 import LoadingState from '@/components/loading-state'
 import ErrorState from '@/components/Error-state'
 
-import { Button } from '@/components/ui/button'
 const AgentsView = () => {
   const trpc=useTRPC();
   const { data} = useSuspenseQuery(trpc.agents.getMany.queryOptions());
@@ -13,8 +12,7 @@ const AgentsView = () => {
   
   return (
     <div>
-        
-        {JSON.stringify(data,null,2)}
+      {JSON.stringify(data,null,2)}
     </div>
   )
 }
