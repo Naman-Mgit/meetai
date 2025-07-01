@@ -4,7 +4,7 @@ import humanizeDuration from "humanize-duration"
 import { ColumnDef } from "@tanstack/react-table"
 import { MeetingGetMany } from "../../types"
 import { GeneratedAvatar } from "@/components/generated-avatar"
-import { CircleCheckIcon, CircleXIcon, ClockArrowUpIcon, ClockFadingIcon, CornerDownRightIcon, LoaderIcon } from "lucide-react"
+import { CircleCheckIcon, CircleXIcon, ClockArrowUpIcon, ClockFadingIcon, CornerDownRightIcon, LoaderIcon, VideoIcon } from "lucide-react"
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge"
 
@@ -17,7 +17,7 @@ function formatDuration(seconds:number){
 }
 const statusIconMap={
    upcoming:ClockArrowUpIcon,
-   active:LoaderIcon,
+   active:VideoIcon,
    completed:CircleCheckIcon,
    processing:LoaderIcon,
    cancelled:CircleXIcon
