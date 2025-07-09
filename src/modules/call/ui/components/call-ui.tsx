@@ -5,6 +5,7 @@ import { CallActive } from "./call-active";
 import { CallEnded } from "./call-ended";
 interface Props{
     meetingName:string;
+    
 }
 
 export const CallUI=({meetingName}:Props)=>{
