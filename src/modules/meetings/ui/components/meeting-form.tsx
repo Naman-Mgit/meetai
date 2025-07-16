@@ -16,6 +16,7 @@ import { toast } from "sonner";
 import { useState } from "react";
 import { Divide } from "lucide-react";
 import { NewAgentDialog } from "@/modules/agents/ui/components/new-agentDialog";
+import { useRouter } from "next/navigation";
 
 
 interface MeetingFormProps {
@@ -31,10 +32,11 @@ export const MeetingForm = ({
 }: MeetingFormProps) => {
     const trpc = useTRPC();
     const queryClient = useQueryClient()
-
+    
     const [openNewAgentDialog, setOpenNewAgentDialog] = useState(false)
     const [agentSearch, setAgentSearch] = useState("")
-
+    
+    const router=useRouter();
     const agents = useQuery(
         trpc.agents.getMany.queryOptions({
             pageSize: 100,
@@ -48,12 +50,18 @@ export const MeetingForm = ({
                 await queryClient.invalidateQueries(
                     trpc.meetings.getMany.queryOptions({})
                 )
-
-
+                await queryClient.invalidateQueries(
+                    trpc.premium.getFreeUsgae.queryOptions()
+                )
+                
                 onSuccess?.(data.id)
             },
             onError: (error) => {
                 toast.error(error.message)
+
+                if(error.data?.code === "FORBIDDEN"){
+                    router.push("/upgrade")
+                }
             }
         })
     )

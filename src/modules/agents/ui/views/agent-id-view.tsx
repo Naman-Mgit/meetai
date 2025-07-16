@@ -29,6 +29,9 @@ export const AgentIdView=({agentId}:Props)=>{
          trpc.agents.remove.mutationOptions({
              onSuccess:async ()=>{
                 await queryCleint.invalidateQueries(trpc.agents.getMany.queryOptions({}));
+                await queryCleint.invalidateQueries(
+                    trpc.premium.getFreeUsgae.queryOptions()
+                )
                 router.push("/agents");
              },
              onError:(error)=>{
