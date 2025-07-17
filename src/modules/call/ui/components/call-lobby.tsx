@@ -12,7 +12,7 @@ import { authClient } from "@/lib/auth-client"
 import { Button } from "@/components/ui/button"
 import { generateAvatarUri } from "@/lib/avatar"
 import "@stream-io/video-react-sdk/dist/css/styles.css";
-import { headers } from "next/headers"
+
 
 interface Props{
     onJoin:()=>void

@@ -4,7 +4,7 @@ import { useSuspenseQuery } from "@tanstack/react-query"
 
 import { useTRPC } from "@/trpc/client"
 import { authClient } from "@/lib/auth-client"
-import ErrorState from "@/components/Error-state"
+
 import LoadingState from "@/components/loading-state"
 import { PricingCard } from "../components/pricing-card"
 

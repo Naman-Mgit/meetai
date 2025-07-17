@@ -4,16 +4,14 @@ import { ChevronsUpDownIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
-  Command,
-  CommandDialog,
+  
   CommandEmpty,
-  CommandGroup,
+  
   CommandInput,
   CommandItem,
   CommandList,
   CommandResponsiveDialog,
-  CommandSeparator,
-  CommandShortcut,
+  
 } from "@/components/ui/command"
 
 
@@ -37,7 +35,7 @@ export const CommandSelect = ({
     onSearch, 
     value,
     placeholder,
-    isSearchable,
+    
     className
 }:Props)=>{
      const [open,setOpen]=useState(false)

@@ -14,7 +14,7 @@ import { GeneratedAvatar } from "@/components/generated-avatar";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { useState } from "react";
-import { Divide } from "lucide-react";
+
 import { NewAgentDialog } from "@/modules/agents/ui/components/new-agentDialog";
 import { useRouter } from "next/navigation";
 

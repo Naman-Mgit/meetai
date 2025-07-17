@@ -50,11 +50,11 @@ export async function POST(req : NextRequest){
          return NextResponse.json({error : "Invalid JSON"},{status:400})
     }
     const eventType= (payload as Record<string,unknown>)?.type;
-    console.log("🧩 Event Type:", eventType);
+    
     if(eventType === "call.session_started"){
         const event= payload as CallSessionStartedEvent;
         const meetingId= event.call.custom?.meetingId;
-        console.log("🔍 Meeting ID from webhook:", meetingId);
+       
         if(!meetingId){
             return NextResponse.json({error:"Missing meetingId"},{status:400})
         }
@@ -73,7 +73,7 @@ export async function POST(req : NextRequest){
         if(!existingMeeting){
             return NextResponse.json({error:"Meeting not found"},{status:404});
         }
-        console.log("🔍 Existing Meeting ID from webhook:", existingMeeting.id);
+        
         await db
           .update(meetings)
           .set({
@@ -90,7 +90,7 @@ export async function POST(req : NextRequest){
         if(!existingAgent){
             return NextResponse.json({error:"Agent not found"},{status:404})
         }
-        console.log("🔍 Existing Agent ID from webhook:", existingAgent.id);
+        
         
         
         const call=streamVideo.video.call("default",meetingId);
@@ -100,15 +100,14 @@ export async function POST(req : NextRequest){
             openAiApiKey:process.env.OPENAI_API_KEY!,
             agentUserId:existingAgent.id
         })
-        console.log("🤖 Connected to OpenAI agent:", existingAgent.id);
-        console.log("📋 Agent Instructions:", existingAgent.instructions);
+      
         realtimeClient.updateSession({
             instructions:existingAgent.instructions
         })
     }else if(eventType === "call.session_participant_left"){
         const event = payload as CallSessionParticipantLeftEvent;
         const meetingId=event.call_cid.split(":")[1];
-        console.log("🔍 Participant left, meeting ID:", meetingId);
+       
         if(!meetingId){
             return NextResponse.json({error:"Missing meetingId"},{status:400})
         }
