@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from '@/components/ui/button';
-import { Calculator, GraduationCap, Stethoscope, Languages, Plus, ArrowRight } from 'lucide-react';
+import { Calculator, GraduationCap, Stethoscope, Languages, Plus} from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 const FeaturedAgents = () => {
